@@ -22,15 +22,15 @@ This microservice is responsible for:
 
 ## Docker guideline
 ### Build docker image
-`docker build -t <account>/identity-service:0.9.0 .`
+`docker build -t <account>/identity-service:latest .`
 ### Push docker image to Docker Hub
-`docker image push <account>/identity-service:0.9.0`
+`docker image push <account>/identity-service:latest`
 ### Create network:
-`docker network create devteria-network`
-### Start MySQL in devteria-network
-`docker run --network devteria-network --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:8.0.36-debian`
-### Run your application in devteria-network
-`docker run --name identity-service --network devteria-network -p 8080:8080 -e DBMS_CONNECTION=jdbc:mysql://mysql:3306/identity_service identity-service:0.9.0`
+`docker network create identity-network`
+### Start MySQL in identity-network
+`docker run --network identity-network --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:8.0.41-debian`
+### Run your application in identity-network
+`docker run --name identity-service --network identity-network -p 8080:8080 -e DBMS_CONNECTION=jdbc:mysql://mysql:3306/identity_service identity-service:latest`
 
 ## Install Docker on ubuntu
 
